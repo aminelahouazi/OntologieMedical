@@ -1,0 +1,754 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://purl.org/lahouaziamine/ontologieMed"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xml:base="http://purl.org/lahouaziamine/ontologieMed">
+    <Prefix name="" IRI="http://purl.org/lahouaziamine/ontologieMed/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="skos" IRI="http://www.w3.org/2004/02/skos/core#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal xml:lang="fr">Ontologie conçu pour le domaine médical</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <Literal xml:lang="fr">Ontologie Médicale</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="/MedecinGeneraliste"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/MedecinSpecialiste"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/Pathologie"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/PathologieAigue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/PathologieChronique"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/Patient"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/Personne"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/ProfessionnelDeSante"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/consulte"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/estConsultePar"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/estDiagnostique"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/estDiagnostiqueeChez"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/estSuiviPar"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/orienteVers"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/recoitOrientationDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/suit"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/age"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/poids"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/sexe"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/specialiteMedicale"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Dr._Anne"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Marie"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/DrMartin"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="/HypertensionArterielle"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="/MedecinGeneraliste"/>
+        <Class IRI="/ProfessionnelDeSante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/MedecinGeneraliste"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="/orienteVers"/>
+            <Class IRI="/MedecinSpecialiste"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/MedecinGeneraliste"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="/suit"/>
+            <Class IRI="/Patient"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/MedecinSpecialiste"/>
+        <Class IRI="/ProfessionnelDeSante"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/MedecinSpecialiste"/>
+        <DataSomeValuesFrom>
+            <DataProperty IRI="/specialiteMedicale"/>
+            <Datatype abbreviatedIRI="xsd:string"/>
+        </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/PathologieAigue"/>
+        <Class IRI="/Pathologie"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/PathologieChronique"/>
+        <Class IRI="/Pathologie"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Patient"/>
+        <Class IRI="/Personne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Patient"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="/consulte"/>
+            <Class IRI="/MedecinGeneraliste"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Patient"/>
+        <ObjectMaxCardinality cardinality="1">
+            <ObjectProperty IRI="/estSuiviPar"/>
+            <Class IRI="/MedecinGeneraliste"/>
+        </ObjectMaxCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Patient"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="/age"/>
+            <DatatypeRestriction>
+                <Datatype abbreviatedIRI="xsd:integer"/>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+                </FacetRestriction>
+                <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                    <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">120</Literal>
+                </FacetRestriction>
+            </DatatypeRestriction>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Patient"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="/sexe"/>
+            <DataOneOf>
+                <Literal>féminin</Literal>
+                <Literal>masculin</Literal>
+            </DataOneOf>
+        </DataExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/ProfessionnelDeSante"/>
+        <Class IRI="/Personne"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="/MedecinGeneraliste"/>
+        <Class IRI="/MedecinSpecialiste"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="/Pathologie"/>
+        <Class IRI="/Personne"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="/PathologieAigue"/>
+        <Class IRI="/PathologieChronique"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="/MedecinGeneraliste"/>
+        <NamedIndividual IRI="#Dr._Anne"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/Personne"/>
+        <NamedIndividual IRI="#Dr._Anne"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/ProfessionnelDeSante"/>
+        <NamedIndividual IRI="#Dr._Anne"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/Patient"/>
+        <NamedIndividual IRI="#Marie"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/Personne"/>
+        <NamedIndividual IRI="#Marie"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/MedecinSpecialiste"/>
+        <NamedIndividual IRI="/DrMartin"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/Personne"/>
+        <NamedIndividual IRI="/DrMartin"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/ProfessionnelDeSante"/>
+        <NamedIndividual IRI="/DrMartin"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/orienteVers"/>
+        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="/DrMartin"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/suit"/>
+        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="#Marie"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/consulte"/>
+        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="#Dr._Anne"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/estDiagnostique"/>
+        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/HypertensionArterielle"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/age"/>
+        <NamedIndividual IRI="#Marie"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">54</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/poids"/>
+        <NamedIndividual IRI="#Marie"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">68.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/sexe"/>
+        <NamedIndividual IRI="#Marie"/>
+        <Literal>féminin</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="/specialiteMedicale"/>
+        <NamedIndividual IRI="/DrMartin"/>
+        <Literal>Cardiologie</Literal>
+    </DataPropertyAssertion>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="/consulte"/>
+        <ObjectProperty IRI="/estConsultePar"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="/estDiagnostique"/>
+        <ObjectProperty IRI="/estDiagnostiqueeChez"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="/estSuiviPar"/>
+        <ObjectProperty IRI="/suit"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="/orienteVers"/>
+        <ObjectProperty IRI="/recoitOrientationDe"/>
+    </InverseObjectProperties>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="/consulte"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="/estConsultePar"/>
+    </IrreflexiveObjectProperty>
+    <IrreflexiveObjectProperty>
+        <ObjectProperty IRI="/suit"/>
+    </IrreflexiveObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/consulte"/>
+        <Class IRI="/Patient"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/estConsultePar"/>
+        <Class IRI="/MedecinGeneraliste"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/estDiagnostique"/>
+        <Class IRI="/Patient"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/estDiagnostiqueeChez"/>
+        <Class IRI="/Pathologie"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/estSuiviPar"/>
+        <Class IRI="/Patient"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/orienteVers"/>
+        <Class IRI="/MedecinGeneraliste"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/recoitOrientationDe"/>
+        <Class IRI="/MedecinSpecialiste"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/suit"/>
+        <Class IRI="/MedecinGeneraliste"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/consulte"/>
+        <Class IRI="/MedecinGeneraliste"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/estConsultePar"/>
+        <Class IRI="/Patient"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/estDiagnostique"/>
+        <Class IRI="/Pathologie"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/estDiagnostiqueeChez"/>
+        <Class IRI="/Patient"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/estSuiviPar"/>
+        <Class IRI="/MedecinGeneraliste"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/orienteVers"/>
+        <Class IRI="/MedecinSpecialiste"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/recoitOrientationDe"/>
+        <Class IRI="/MedecinGeneraliste"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/suit"/>
+        <Class IRI="/Patient"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="/age"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="/poids"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="/sexe"/>
+    </FunctionalDataProperty>
+    <FunctionalDataProperty>
+        <DataProperty IRI="/specialiteMedicale"/>
+    </FunctionalDataProperty>
+    <DataPropertyDomain>
+        <DataProperty IRI="/age"/>
+        <Class IRI="/Patient"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/poids"/>
+        <Class IRI="/Patient"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/sexe"/>
+        <Class IRI="/Patient"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/specialiteMedicale"/>
+        <Class IRI="/MedecinSpecialiste"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="/age"/>
+        <DatatypeRestriction>
+            <Datatype abbreviatedIRI="xsd:integer"/>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">0</Literal>
+            </FacetRestriction>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">120</Literal>
+            </FacetRestriction>
+        </DatatypeRestriction>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/poids"/>
+        <DatatypeRestriction>
+            <Datatype abbreviatedIRI="xsd:decimal"/>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">0.5</Literal>
+            </FacetRestriction>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">300</Literal>
+            </FacetRestriction>
+        </DatatypeRestriction>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/sexe"/>
+        <DataOneOf>
+            <Literal>féminin</Literal>
+            <Literal>masculin</Literal>
+        </DataOneOf>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/specialiteMedicale"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Dr._Anne</IRI>
+        <Literal xml:lang="fr">Dr. Anne</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Marie</IRI>
+        <Literal xml:lang="fr">Marie</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/DrMartin</IRI>
+        <Literal xml:lang="fr">Dr. Martin</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <Literal xml:lang="fr">Élévation persistante de la pression artérielle au-dessus des seuils de référence.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <Literal xml:lang="fr">Hypertension artérielle</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <Literal xml:lang="fr">HTA</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <Literal xml:lang="fr">Tension élevée</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <Literal xml:lang="fr">Professionnel de santé de premier recours qui assure le suivi global du patient, la prévention et la coordination des soins.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <Literal xml:lang="fr">Médecin généraliste</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <Literal xml:lang="fr">MG</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <Literal xml:lang="fr">Médecin traitant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <Literal xml:lang="fr">Omnipraticien</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/MedecinSpecialiste</IRI>
+        <Literal xml:lang="fr">Médecin exerçant dans une discipline précise, vers lequel le généraliste peut orienter le patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/MedecinSpecialiste</IRI>
+        <Literal xml:lang="fr">Médecin spécialiste</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/MedecinSpecialiste</IRI>
+        <Literal xml:lang="fr">Spécialiste</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/Pathologie</IRI>
+        <Literal xml:lang="fr">Altération de l&apos;état de santé caractérisée par un ensemble de symptômes et de signes et relevant d&apos;une cause identifiable ou présumée.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Pathologie</IRI>
+        <Literal xml:lang="fr">Pathologie</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/Pathologie</IRI>
+        <Literal xml:lang="fr">Affection</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/Pathologie</IRI>
+        <Literal xml:lang="fr">Maladie</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/Pathologie</IRI>
+        <Literal xml:lang="fr">Trouble</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/PathologieAigue</IRI>
+        <Literal xml:lang="fr">Pathologie d&apos;apparition brutale et d&apos;évolution de courte durée.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/PathologieAigue</IRI>
+        <Literal xml:lang="fr">Pathologie aiguë</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/PathologieAigue</IRI>
+        <Literal xml:lang="fr">Maladie aiguë</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/PathologieChronique</IRI>
+        <Literal xml:lang="fr">Pathologie d&apos;évolution prolongée, nécessitant un suivi au long cours.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/PathologieChronique</IRI>
+        <Literal xml:lang="fr">Pathologie chronique</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/PathologieChronique</IRI>
+        <Literal xml:lang="fr">Maladie chronique</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/Patient</IRI>
+        <Literal xml:lang="fr">Personne qui consulte un professionnel de santé pour un motif de santé.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Patient</IRI>
+        <Literal xml:lang="fr">Patient</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/Patient</IRI>
+        <Literal xml:lang="fr">Consultant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/Patient</IRI>
+        <Literal xml:lang="fr">Malade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/Personne</IRI>
+        <Literal xml:lang="fr">Être humain impliqué dans une situation de soins, quel que soit son rôle.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Personne</IRI>
+        <Literal xml:lang="fr">Personne</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/Personne</IRI>
+        <Literal xml:lang="fr">Individu</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/ProfessionnelDeSante</IRI>
+        <Literal xml:lang="fr">Personne exerçant une profession de santé.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/ProfessionnelDeSante</IRI>
+        <Literal xml:lang="fr">Professionnel de santé</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/ProfessionnelDeSante</IRI>
+        <Literal xml:lang="fr">Soignant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/age</IRI>
+        <Literal xml:lang="fr">Durée écoulée depuis la naissance, exprimée en années, mois ou jours.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/age</IRI>
+        <Literal xml:lang="fr">âge</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/consulte</IRI>
+        <Literal xml:lang="fr">Le patient se rend en consultation auprès du médecin.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/consulte</IRI>
+        <Literal xml:lang="fr">consulte</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/consulte</IRI>
+        <Literal xml:lang="fr">Est reçu par</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/consulte</IRI>
+        <Literal xml:lang="fr">Rend visite à</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/estConsultePar</IRI>
+        <Literal xml:lang="fr">est consulté par</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/estDiagnostique</IRI>
+        <Literal xml:lang="fr">Le médecin conclut que le patient est atteint de cette pathologie.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/estDiagnostique</IRI>
+        <Literal xml:lang="fr">est diagnostiqué</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/estDiagnostique</IRI>
+        <Literal xml:lang="fr">A pour diagnostic</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/estDiagnostique</IRI>
+        <Literal xml:lang="fr">Est atteint de</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/estDiagnostiqueeChez</IRI>
+        <Literal xml:lang="fr">est diagnostiquée chez</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/estSuiviPar</IRI>
+        <Literal xml:lang="fr">est suivi par</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/orienteVers</IRI>
+        <Literal xml:lang="fr">Le patient est dirigé vers le spécialiste.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/orienteVers</IRI>
+        <Literal xml:lang="fr">oriente vers</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/orienteVers</IRI>
+        <Literal xml:lang="fr">Adresse à</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/orienteVers</IRI>
+        <Literal xml:lang="fr">Réfère à</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/poids</IRI>
+        <Literal xml:lang="fr">Masse du patient en kilogrammes.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/poids</IRI>
+        <Literal xml:lang="fr">poids</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/poids</IRI>
+        <Literal xml:lang="fr">Masse corporelle</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/recoitOrientationDe</IRI>
+        <Literal xml:lang="fr">reçoit l&apos;orientation de</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/sexe</IRI>
+        <Literal xml:lang="fr">Caractéristique biologique du patient (masculin, féminin).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/sexe</IRI>
+        <Literal xml:lang="fr">sexe</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/sexe</IRI>
+        <Literal xml:lang="fr">Sexe biologique</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/specialiteMedicale</IRI>
+        <Literal xml:lang="fr">Discipline dans laquelle le médecin exerce.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/specialiteMedicale</IRI>
+        <Literal xml:lang="fr">spécialité médicale</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/specialiteMedicale</IRI>
+        <Literal xml:lang="fr">Discipline</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/suit</IRI>
+        <Literal xml:lang="fr">Le médecin assure le suivi global du patient.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/suit</IRI>
+        <Literal xml:lang="fr">suit</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+        <IRI>/suit</IRI>
+        <Literal xml:lang="fr">Assure le suivi de</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
