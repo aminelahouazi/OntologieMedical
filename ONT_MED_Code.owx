@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
-<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+<Ontology xmlns="http://w3.org"
      xml:base="http://purl.org/lahouaziamine/ontMed"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdf="http://w3.org"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xml:base="http://purl.org/lahouaziamine/ontMed">
-    <Prefix name="" IRI="http://purl.org/lahouaziamine/ontMed/"/>
-    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
-    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+     xmlns:xsd="http://w3.org"
+     xmlns:rdfs="http://w3.org"
+     ontologyIRI="http://purl.org/lahouaziamine/ontMed">
+    <Prefix name="" IRI="http://purl.org"/>
+    <Prefix name="owl" IRI="http://w3.org"/>
+    <Prefix name="rdf" IRI="http://w3.org"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
-    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
-    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
-    <Prefix name="skos" IRI="http://www.w3.org/2004/02/skos/core#"/>
+    <Prefix name="xsd" IRI="http://w3.org"/>
+    <Prefix name="rdfs" IRI="http://w3.org"/>
+    <Prefix name="skos" IRI="http://w3.org"/>
     <Annotation>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
         <Literal xml:lang="fr">Ontologie conçu pour le domaine médical</Literal>
@@ -20,6 +20,26 @@
     <Annotation>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <Literal xml:lang="fr">Ontologie Médicale</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:title"/>
+        <Literal xml:lang="fr">Ontologie Médicale</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:description"/>
+        <Literal xml:lang="fr">Ontologie de médecine générale (patients, professionnels de santé, pathologies) construite selon la méthodologie METHONTOLOGY.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:creator"/>
+        <Literal>LAHOUAZI Amine</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:created"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2026-11-10</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal>1.0</Literal>
     </Annotation>
     <Declaration>
         <Class IRI="/MedecinGeneraliste"/>
@@ -82,10 +102,10 @@
         <DataProperty IRI="/specialiteMedicale"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="/DrAnne"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/Marie"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="/DrMartin"/>
@@ -95,6 +115,12 @@
     </Declaration>
     <Declaration>
         <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="/MedecinGeneraliste"/>
@@ -194,23 +220,23 @@
     </DisjointClasses>
     <ClassAssertion>
         <Class IRI="/MedecinGeneraliste"/>
-        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="/DrAnne"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="/Personne"/>
-        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="/DrAnne"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="/ProfessionnelDeSante"/>
-        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="/DrAnne"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="/Patient"/>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/Marie"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="/Personne"/>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/Marie"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="/MedecinSpecialiste"/>
@@ -226,37 +252,37 @@
     </ClassAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="/orienteVers"/>
-        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="/DrAnne"/>
         <NamedIndividual IRI="/DrMartin"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="/suit"/>
-        <NamedIndividual IRI="#Dr._Anne"/>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/DrAnne"/>
+        <NamedIndividual IRI="/Marie"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="/consulte"/>
-        <NamedIndividual IRI="#Marie"/>
-        <NamedIndividual IRI="#Dr._Anne"/>
+        <NamedIndividual IRI="/Marie"/>
+        <NamedIndividual IRI="/DrAnne"/>
     </ObjectPropertyAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="/estDiagnostique"/>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/Marie"/>
         <NamedIndividual IRI="/HypertensionArterielle"/>
     </ObjectPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="/age"/>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/Marie"/>
         <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">54</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="/poids"/>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/Marie"/>
         <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">68.5</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="/sexe"/>
-        <NamedIndividual IRI="#Marie"/>
+        <NamedIndividual IRI="/Marie"/>
         <Literal>féminin</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
@@ -418,12 +444,12 @@
     </DataPropertyRange>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#Dr._Anne</IRI>
+        <IRI>/DrAnne</IRI>
         <Literal xml:lang="fr">Dr. Anne</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#Marie</IRI>
+        <IRI>/Marie</IRI>
         <Literal xml:lang="fr">Marie</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
@@ -746,6 +772,29 @@
         <IRI>/suit</IRI>
         <Literal xml:lang="fr">Assure le suivi de</Literal>
     </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <IRI>http://www.wikidata.org/entity/Q41861</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <IRI>http://dbpedia.org/resource/Hypertension</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
+        <IRI>/MedecinSpecialiste</IRI>
+        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
+    </AnnotationAssertion>
 </Ontology>
 
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
 
