@@ -15,28 +15,28 @@
     <Prefix name="skos" IRI="http://www.w3.org/2004/02/skos/core#"/>
     <Prefix name="dcterms" IRI="http://purl.org/dc/terms/"/>
     <Annotation>
-        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
-        <Literal xml:lang="fr">Ontologie conçu pour le domaine médical</Literal>
-    </Annotation>
-    <Annotation>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <Literal xml:lang="fr">Ontologie Médicale</Literal>
-    </Annotation>
-    <Annotation>
-        <AnnotationProperty abbreviatedIRI="dcterms:title"/>
-        <Literal xml:lang="fr">Ontologie Médicale</Literal>
-    </Annotation>
-    <Annotation>
-        <AnnotationProperty abbreviatedIRI="dcterms:description"/>
-        <Literal xml:lang="fr">Ontologie de médecine générale (patients, professionnels de santé, pathologies) construite selon la méthodologie METHONTOLOGY.</Literal>
+        <AnnotationProperty abbreviatedIRI="dcterms:created"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2026-11-10</Literal>
     </Annotation>
     <Annotation>
         <AnnotationProperty abbreviatedIRI="dcterms:creator"/>
         <Literal>LAHOUAZI Amine</Literal>
     </Annotation>
     <Annotation>
-        <AnnotationProperty abbreviatedIRI="dcterms:created"/>
-        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#date">2026-11-10</Literal>
+        <AnnotationProperty abbreviatedIRI="dcterms:description"/>
+        <Literal xml:lang="fr">Ontologie de médecine générale (patients, professionnels de santé, pathologies) construite selon la méthodologie METHONTOLOGY.</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="dcterms:title"/>
+        <Literal xml:lang="fr">Ontologie Médicale</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal xml:lang="fr">Ontologie conçu pour le domaine médical</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <Literal xml:lang="fr">Ontologie Médicale</Literal>
     </Annotation>
     <Annotation>
         <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
@@ -106,22 +106,37 @@
         <NamedIndividual IRI="/DrAnne"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="/Marie"/>
-    </Declaration>
-    <Declaration>
         <NamedIndividual IRI="/DrMartin"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="/HypertensionArterielle"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="/Marie"/>
+    </Declaration>
+    <Declaration>
         <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
     </Declaration>
     <Declaration>
         <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
     </Declaration>
     <Declaration>
-        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
+        <AnnotationProperty abbreviatedIRI="dcterms:description"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dcterms:title"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:date"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dcterms:created"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dcterms:creator"/>
     </Declaration>
     <SubClassOf>
         <Class IRI="/MedecinGeneraliste"/>
@@ -151,6 +166,10 @@
             <DataProperty IRI="/specialiteMedicale"/>
             <Datatype abbreviatedIRI="xsd:string"/>
         </DataSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Pathologie"/>
+        <Class abbreviatedIRI="owl:Thing"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="/PathologieAigue"/>
@@ -204,6 +223,10 @@
         </DataExactCardinality>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="/Personne"/>
+        <Class abbreviatedIRI="owl:Thing"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="/ProfessionnelDeSante"/>
         <Class IRI="/Personne"/>
     </SubClassOf>
@@ -232,14 +255,6 @@
         <NamedIndividual IRI="/DrAnne"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="/Patient"/>
-        <NamedIndividual IRI="/Marie"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="/Personne"/>
-        <NamedIndividual IRI="/Marie"/>
-    </ClassAssertion>
-    <ClassAssertion>
         <Class IRI="/MedecinSpecialiste"/>
         <NamedIndividual IRI="/DrMartin"/>
     </ClassAssertion>
@@ -250,6 +265,18 @@
     <ClassAssertion>
         <Class IRI="/ProfessionnelDeSante"/>
         <NamedIndividual IRI="/DrMartin"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/PathologieChronique"/>
+        <NamedIndividual IRI="/HypertensionArterielle"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/Patient"/>
+        <NamedIndividual IRI="/Marie"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="/Personne"/>
+        <NamedIndividual IRI="/Marie"/>
     </ClassAssertion>
     <ObjectPropertyAssertion>
         <ObjectProperty IRI="/orienteVers"/>
@@ -272,6 +299,11 @@
         <NamedIndividual IRI="/HypertensionArterielle"/>
     </ObjectPropertyAssertion>
     <DataPropertyAssertion>
+        <DataProperty IRI="/specialiteMedicale"/>
+        <NamedIndividual IRI="/DrMartin"/>
+        <Literal>Cardiologie</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
         <DataProperty IRI="/age"/>
         <NamedIndividual IRI="/Marie"/>
         <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">54</Literal>
@@ -285,11 +317,6 @@
         <DataProperty IRI="/sexe"/>
         <NamedIndividual IRI="/Marie"/>
         <Literal>féminin</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="/specialiteMedicale"/>
-        <NamedIndividual IRI="/DrMartin"/>
-        <Literal>Cardiologie</Literal>
     </DataPropertyAssertion>
     <InverseObjectProperties>
         <ObjectProperty IRI="/consulte"/>
@@ -450,11 +477,6 @@
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/Marie</IRI>
-        <Literal xml:lang="fr">Marie</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>/DrMartin</IRI>
         <Literal xml:lang="fr">Dr. Martin</Literal>
     </AnnotationAssertion>
@@ -469,6 +491,11 @@
         <Literal xml:lang="fr">Hypertension artérielle</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <IRI>http://dbpedia.org/resource/Hypertension</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
         <IRI>/HypertensionArterielle</IRI>
         <Literal xml:lang="fr">HTA</Literal>
@@ -477,6 +504,16 @@
         <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
         <IRI>/HypertensionArterielle</IRI>
         <Literal xml:lang="fr">Tension élevée</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/HypertensionArterielle</IRI>
+        <IRI>http://www.wikidata.org/entity/Q41861</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Marie</IRI>
+        <Literal xml:lang="fr">Marie</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
@@ -504,6 +541,11 @@
         <Literal xml:lang="fr">Omnipraticien</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
         <IRI>/MedecinSpecialiste</IRI>
         <Literal xml:lang="fr">Médecin exerçant dans une discipline précise, vers lequel le généraliste peut orienter le patient.</Literal>
@@ -517,6 +559,11 @@
         <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
         <IRI>/MedecinSpecialiste</IRI>
         <Literal xml:lang="fr">Spécialiste</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
+        <IRI>/MedecinSpecialiste</IRI>
+        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
@@ -772,26 +819,6 @@
         <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
         <IRI>/suit</IRI>
         <Literal xml:lang="fr">Assure le suivi de</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
-        <IRI>/HypertensionArterielle</IRI>
-        <IRI>http://www.wikidata.org/entity/Q41861</IRI>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
-        <IRI>/HypertensionArterielle</IRI>
-        <IRI>http://dbpedia.org/resource/Hypertension</IRI>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
-        <IRI>/MedecinGeneraliste</IRI>
-        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
-        <IRI>/MedecinSpecialiste</IRI>
-        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
     </AnnotationAssertion>
 </Ontology>
 
