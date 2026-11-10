@@ -470,6 +470,106 @@
         <DataProperty IRI="/specialiteMedicale"/>
         <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
+
+    <!-- Alignements sémantiques (Wikidata & DBpedia) -->
+    
+    <!-- 1. Personne -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/Personne</IRI>
+        <IRI>http://www.wikidata.org/entity/Q5</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/Personne</IRI>
+        <IRI>http://dbpedia.org/resource/Person</IRI>
+    </AnnotationAssertion>
+
+    <!-- 2. Patient -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/Patient</IRI>
+        <IRI>http://www.wikidata.org/entity/Q181600</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/Patient</IRI>
+        <IRI>http://dbpedia.org/resource/Patient</IRI>
+    </AnnotationAssertion>
+
+    <!-- 3. Professionnel de santé -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/ProfessionnelDeSante</IRI>
+        <IRI>http://www.wikidata.org/entity/Q66624419</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/ProfessionnelDeSante</IRI>
+        <IRI>http://dbpedia.org/resource/Health_professional</IRI>
+    </AnnotationAssertion>
+
+    <!-- 4. Médecin généraliste -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/MedecinGeneraliste</IRI>
+        <IRI>http://dbpedia.org/resource/General_practitioner</IRI>
+    </AnnotationAssertion>
+
+    <!-- 5. Médecin spécialiste -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/MedecinSpecialiste</IRI>
+        <IRI>http://www.wikidata.org/entity/Q2289467</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/MedecinSpecialiste</IRI>
+        <IRI>http://dbpedia.org/resource/Medical_specialty</IRI>
+    </AnnotationAssertion>
+
+    <!-- 6. Pathologie -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/Pathologie</IRI>
+        <IRI>http://www.wikidata.org/entity/Q12136</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/Pathologie</IRI>
+        <IRI>http://dbpedia.org/resource/Disease</IRI>
+    </AnnotationAssertion>
+
+    <!-- 7. Pathologie aiguë -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/PathologieAigue</IRI>
+        <IRI>http://www.wikidata.org/entity/Q1262331</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/PathologieAigue</IRI>
+        <IRI>http://dbpedia.org/resource/Acute_(medicine)</IRI>
+    </AnnotationAssertion>
+
+    <!-- 8. Pathologie chronique -->
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="skos:exactMatch"/>
+        <IRI>/PathologieChronique</IRI>
+        <IRI>http://www.wikidata.org/entity/Q13583594</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:seeAlso"/>
+        <IRI>/PathologieChronique</IRI>
+        <IRI>http://dbpedia.org/resource/Chronic_condition</IRI>
+    </AnnotationAssertion>
+
+    <!-- Annotations existantes -->
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>/DrAnne</IRI>
@@ -541,11 +641,6 @@
         <Literal xml:lang="fr">Omnipraticien</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
-        <IRI>/MedecinGeneraliste</IRI>
-        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
         <IRI>/MedecinSpecialiste</IRI>
         <Literal xml:lang="fr">Médecin exerçant dans une discipline précise, vers lequel le généraliste peut orienter le patient.</Literal>
@@ -559,11 +654,6 @@
         <AnnotationProperty abbreviatedIRI="skos:altLabel"/>
         <IRI>/MedecinSpecialiste</IRI>
         <Literal xml:lang="fr">Spécialiste</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="skos:broadMatch"/>
-        <IRI>/MedecinSpecialiste</IRI>
-        <IRI>http://www.wikidata.org/entity/Q39631</IRI>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
@@ -821,8 +911,3 @@
         <Literal xml:lang="fr">Assure le suivi de</Literal>
     </AnnotationAssertion>
 </Ontology>
-
-
-
-<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
-
