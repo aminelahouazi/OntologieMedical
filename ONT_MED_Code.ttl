@@ -1,0 +1,387 @@
+@prefix : <http://purl.org/lahouaziamine/ontMed/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://purl.org/lahouaziamine/ontMed/> .
+
+<http://purl.org/lahouaziamine/ontMed> rdf:type owl:Ontology ;
+                                        dcterms:created "2026-11-10"^^xsd:date ;
+                                        dcterms:creator "LAHOUAZI Amine" ;
+                                        dcterms:description "Ontologie de médecine générale (patients, professionnels de santé, pathologies) construite selon la méthodologie METHONTOLOGY."@fr ;
+                                        dcterms:title "Ontologie Médicale"@fr ;
+                                        rdfs:comment "Ontologie conçu pour le domaine médical"@fr ;
+                                        rdfs:label "Ontologie Médicale"@fr ;
+                                        owl:versionInfo "1.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+dcterms:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+skos:altLabel rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#broadMatch
+skos:broadMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#exactMatch
+skos:exactMatch rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/lahouaziamine/ontMed/consulte
+:consulte rdf:type owl:ObjectProperty ;
+          owl:inverseOf :estConsultePar ;
+          rdf:type owl:IrreflexiveProperty ;
+          rdfs:domain :Patient ;
+          rdfs:range :MedecinGeneraliste ;
+          rdfs:comment "Le patient se rend en consultation auprès du médecin."@fr ;
+          rdfs:label "consulte"@fr ;
+          skos:altLabel "Est reçu par"@fr ,
+                        "Rend visite à"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/estConsultePar
+:estConsultePar rdf:type owl:ObjectProperty ,
+                         owl:IrreflexiveProperty ;
+                rdfs:domain :MedecinGeneraliste ;
+                rdfs:range :Patient ;
+                rdfs:label "est consulté par"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/estDiagnostique
+:estDiagnostique rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :estDiagnostiqueeChez ;
+                 rdfs:domain :Patient ;
+                 rdfs:range :Pathologie ;
+                 rdfs:comment "Le médecin conclut que le patient est atteint de cette pathologie."@fr ;
+                 rdfs:label "est diagnostiqué"@fr ;
+                 skos:altLabel "A pour diagnostic"@fr ,
+                               "Est atteint de"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/estDiagnostiqueeChez
+:estDiagnostiqueeChez rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Pathologie ;
+                      rdfs:range :Patient ;
+                      rdfs:label "est diagnostiquée chez"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/estSuiviPar
+:estSuiviPar rdf:type owl:ObjectProperty ;
+             owl:inverseOf :suit ;
+             rdfs:domain :Patient ;
+             rdfs:range :MedecinGeneraliste ;
+             rdfs:label "est suivi par"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/orienteVers
+:orienteVers rdf:type owl:ObjectProperty ;
+             owl:inverseOf :recoitOrientationDe ;
+             rdfs:domain :MedecinGeneraliste ;
+             rdfs:range :MedecinSpecialiste ;
+             rdfs:comment "Le patient est dirigé vers le spécialiste."@fr ;
+             rdfs:label "oriente vers"@fr ;
+             skos:altLabel "Adresse à"@fr ,
+                           "Réfère à"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/recoitOrientationDe
+:recoitOrientationDe rdf:type owl:ObjectProperty ;
+                     rdfs:domain :MedecinSpecialiste ;
+                     rdfs:range :MedecinGeneraliste ;
+                     rdfs:label "reçoit l'orientation de"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/suit
+:suit rdf:type owl:ObjectProperty ,
+               owl:IrreflexiveProperty ;
+      rdfs:domain :MedecinGeneraliste ;
+      rdfs:range :Patient ;
+      rdfs:comment "Le médecin assure le suivi global du patient."@fr ;
+      rdfs:label "suit"@fr ;
+      skos:altLabel "Assure le suivi de"@fr .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/lahouaziamine/ontMed/age
+:age rdf:type owl:DatatypeProperty ,
+              owl:FunctionalProperty ;
+     rdfs:domain :Patient ;
+     rdfs:range [ rdf:type rdfs:Datatype ;
+                  owl:onDatatype xsd:integer ;
+                  owl:withRestrictions ( [ xsd:minInclusive 0
+                                         ]
+                                         [ xsd:maxInclusive 120
+                                         ]
+                                       )
+                ] ;
+     rdfs:comment "Durée écoulée depuis la naissance, exprimée en années, mois ou jours."@fr ;
+     rdfs:label "âge"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/poids
+:poids rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty ;
+       rdfs:domain :Patient ;
+       rdfs:range [ rdf:type rdfs:Datatype ;
+                    owl:onDatatype xsd:decimal ;
+                    owl:withRestrictions ( [ xsd:minInclusive 0.5
+                                           ]
+                                           [ xsd:maxInclusive 300
+                                           ]
+                                         )
+                  ] ;
+       rdfs:comment "Masse du patient en kilogrammes."@fr ;
+       rdfs:label "poids"@fr ;
+       skos:altLabel "Masse corporelle"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/sexe
+:sexe rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
+      rdfs:domain :Patient ;
+      rdfs:range [ rdf:type rdfs:Datatype ;
+                   owl:oneOf [ rdf:type rdf:List ;
+                               rdf:first "féminin" ;
+                               rdf:rest [ rdf:type rdf:List ;
+                                          rdf:first "masculin" ;
+                                          rdf:rest rdf:nil
+                                        ]
+                             ]
+                 ] ;
+      rdfs:comment "Caractéristique biologique du patient (masculin, féminin)."@fr ;
+      rdfs:label "sexe"@fr ;
+      skos:altLabel "Sexe biologique"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/specialiteMedicale
+:specialiteMedicale rdf:type owl:DatatypeProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain :MedecinSpecialiste ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Discipline dans laquelle le médecin exerce."@fr ;
+                    rdfs:label "spécialité médicale"@fr ;
+                    skos:altLabel "Discipline"@fr .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/lahouaziamine/ontMed/MedecinGeneraliste
+:MedecinGeneraliste rdf:type owl:Class ;
+                    rdfs:subClassOf :ProfessionnelDeSante ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :orienteVers ;
+                                      owl:allValuesFrom :MedecinSpecialiste
+                                    ] ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :suit ;
+                                      owl:allValuesFrom :Patient
+                                    ] ;
+                    owl:disjointWith :MedecinSpecialiste ;
+                    rdfs:comment "Professionnel de santé de premier recours qui assure le suivi global du patient, la prévention et la coordination des soins."@fr ;
+                    rdfs:label "Médecin généraliste"@fr ;
+                    rdfs:seeAlso <http://dbpedia.org/resource/General_practitioner> ;
+                    skos:altLabel "MG"@fr ,
+                                  "Médecin traitant"@fr ,
+                                  "Omnipraticien"@fr ;
+                    skos:exactMatch <http://www.wikidata.org/entity/Q39631> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/MedecinSpecialiste
+:MedecinSpecialiste rdf:type owl:Class ;
+                    rdfs:subClassOf :ProfessionnelDeSante ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :specialiteMedicale ;
+                                      owl:someValuesFrom xsd:string
+                                    ] ;
+                    rdfs:comment "Médecin exerçant dans une discipline précise, vers lequel le généraliste peut orienter le patient."@fr ;
+                    rdfs:label "Médecin spécialiste"@fr ;
+                    rdfs:seeAlso <http://dbpedia.org/resource/Medical_specialty> ;
+                    skos:altLabel "Spécialiste"@fr ;
+                    skos:exactMatch <http://www.wikidata.org/entity/Q2289467> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/Pathologie
+:Pathologie rdf:type owl:Class ;
+            rdfs:subClassOf owl:Thing ;
+            owl:disjointWith :Personne ;
+            rdfs:comment "Altération de l'état de santé caractérisée par un ensemble de symptômes et de signes et relevant d'une cause identifiable ou présumée."@fr ;
+            rdfs:label "Pathologie"@fr ;
+            rdfs:seeAlso <http://dbpedia.org/resource/Disease> ;
+            skos:altLabel "Affection"@fr ,
+                          "Maladie"@fr ,
+                          "Trouble"@fr ;
+            skos:exactMatch <http://www.wikidata.org/entity/Q12136> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/PathologieAigue
+:PathologieAigue rdf:type owl:Class ;
+                 rdfs:subClassOf :Pathologie ;
+                 owl:disjointWith :PathologieChronique ;
+                 rdfs:comment "Pathologie d'apparition brutale et d'évolution de courte durée."@fr ;
+                 rdfs:label "Pathologie aiguë"@fr ;
+                 rdfs:seeAlso <http://dbpedia.org/resource/Acute_(medicine)> ;
+                 skos:altLabel "Maladie aiguë"@fr ;
+                 skos:exactMatch <http://www.wikidata.org/entity/Q1262331> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/PathologieChronique
+:PathologieChronique rdf:type owl:Class ;
+                     rdfs:subClassOf :Pathologie ;
+                     rdfs:comment "Pathologie d'évolution prolongée, nécessitant un suivi au long cours."@fr ;
+                     rdfs:label "Pathologie chronique"@fr ;
+                     rdfs:seeAlso <http://dbpedia.org/resource/Chronic_condition> ;
+                     skos:altLabel "Maladie chronique"@fr ;
+                     skos:exactMatch <http://www.wikidata.org/entity/Q13583594> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/Patient
+:Patient rdf:type owl:Class ;
+         rdfs:subClassOf :Personne ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :consulte ;
+                           owl:someValuesFrom :MedecinGeneraliste
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :estSuiviPar ;
+                           owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onClass :MedecinGeneraliste
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :age ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                             owl:onDatatype xsd:integer ;
+                                             owl:withRestrictions ( [ xsd:minInclusive 0
+                                                                    ]
+                                                                    [ xsd:maxInclusive 120
+                                                                    ]
+                                                                  )
+                                           ]
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :sexe ;
+                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                           owl:onDataRange [ rdf:type rdfs:Datatype ;
+                                             owl:oneOf [ rdf:type rdf:List ;
+                                                         rdf:first "féminin" ;
+                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                    rdf:first "masculin" ;
+                                                                    rdf:rest rdf:nil
+                                                                  ]
+                                                       ]
+                                           ]
+                         ] ;
+         rdfs:comment "Personne qui consulte un professionnel de santé pour un motif de santé."@fr ;
+         rdfs:label "Patient"@fr ;
+         rdfs:seeAlso <http://dbpedia.org/resource/Patient> ;
+         skos:altLabel "Consultant"@fr ,
+                       "Malade"@fr ;
+         skos:exactMatch <http://www.wikidata.org/entity/Q181600> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/Personne
+:Personne rdf:type owl:Class ;
+          rdfs:subClassOf owl:Thing ;
+          rdfs:comment "Être humain impliqué dans une situation de soins, quel que soit son rôle."@fr ;
+          rdfs:label "Personne"@fr ;
+          rdfs:seeAlso <http://dbpedia.org/resource/Person> ;
+          skos:altLabel "Individu"@fr ;
+          skos:exactMatch <http://www.wikidata.org/entity/Q5> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/ProfessionnelDeSante
+:ProfessionnelDeSante rdf:type owl:Class ;
+                      rdfs:subClassOf :Personne ;
+                      rdfs:comment "Personne exerçant une profession de santé."@fr ;
+                      rdfs:label "Professionnel de santé"@fr ;
+                      rdfs:seeAlso <http://dbpedia.org/resource/Health_professional> ;
+                      skos:altLabel "Soignant"@fr ;
+                      skos:exactMatch <http://www.wikidata.org/entity/Q66624419> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://purl.org/lahouaziamine/ontMed/DrAnne
+:DrAnne rdf:type owl:NamedIndividual ,
+                 :MedecinGeneraliste ,
+                 :Personne ,
+                 :ProfessionnelDeSante ;
+        :orienteVers :DrMartin ;
+        :suit :Marie ;
+        rdfs:label "Dr. Anne"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/DrMartin
+:DrMartin rdf:type owl:NamedIndividual ,
+                   :MedecinSpecialiste ,
+                   :Personne ,
+                   :ProfessionnelDeSante ;
+          :specialiteMedicale "Cardiologie" ;
+          rdfs:label "Dr. Martin"@fr .
+
+
+###  http://purl.org/lahouaziamine/ontMed/HypertensionArterielle
+:HypertensionArterielle rdf:type owl:NamedIndividual ,
+                                 :PathologieChronique ;
+                        rdfs:comment "Élévation persistante de la pression artérielle au-dessus des seuils de référence."@fr ;
+                        rdfs:label "Hypertension artérielle"@fr ;
+                        rdfs:seeAlso <http://dbpedia.org/resource/Hypertension> ;
+                        skos:altLabel "HTA"@fr ,
+                                      "Tension élevée"@fr ;
+                        skos:exactMatch <http://www.wikidata.org/entity/Q41861> .
+
+
+###  http://purl.org/lahouaziamine/ontMed/Marie
+:Marie rdf:type owl:NamedIndividual ,
+                :Patient ,
+                :Personne ;
+       :consulte :DrAnne ;
+       :estDiagnostique :HypertensionArterielle ;
+       :age 54 ;
+       :poids 68.5 ;
+       :sexe "féminin" ;
+       rdfs:label "Marie"@fr .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
